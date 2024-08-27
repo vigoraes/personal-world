@@ -48,7 +48,7 @@ $ npm run start:prod
 $ npm run start:db
 
 # create migrations
-$ npm run entities:create'
+$ npm run entities:create
 
 # create migrations
 $ npm run migration:create --name='migration-name'
