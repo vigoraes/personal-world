@@ -43,6 +43,15 @@ $ npm run start:dev
 
 # production mode
 $ npm run start:prod
+
+# create local database
+$ npm run start:db
+
+# create migrations
+$ npm run entities:create'
+
+# create migrations
+$ npm run migration:create --name='migration-name'
 ```
 
 ## Test
