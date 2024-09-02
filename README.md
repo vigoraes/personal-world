@@ -57,7 +57,7 @@ $ npm run migration:create --name='migration-name'
 $ npm run migration:down
 
 # revert all migrations
-$ npm run entities:revert
+$ npm run migration:revert
 ```
 
 ## Test
