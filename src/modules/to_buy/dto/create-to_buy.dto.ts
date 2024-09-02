@@ -1,11 +1,15 @@
-import { IsBoolean, IsDateString, IsInt, IsOptional, IsPositive, IsString } from "class-validator";
+import { IsBoolean, IsDateString, IsNumber, IsOptional, IsPositive, IsString } from "class-validator";
 
 export class CreateToBuyDto {
+
+    @IsOptional()
+    @IsNumber()
+    id: number;
+
     @IsString()
     title: string;
     
     @IsOptional()
-    @IsInt()
     @IsPositive()
     type?: number = 1;
     
@@ -18,7 +22,7 @@ export class CreateToBuyDto {
     deadline?: string;
     
     @IsOptional()
-    @IsInt()
+    @IsNumber()
     @IsPositive()
     priority?: number = 1;
     

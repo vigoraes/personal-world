@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class ToBuy1724733676322 implements MigrationInterface {
+export class ToBuy1725292763135 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
@@ -68,26 +68,26 @@ export class ToBuy1724733676322 implements MigrationInterface {
                   type: 'timestamptz',
                   isNullable: true,
                 },
-                {
-                  name: "created_by",
-                  type: "int",
-                  isNullable: true
-                },
-                {
-                    name: 'created_at',
-                    type: 'timestamptz',
-                    default: 'now()'
-                },
-                {
-                    name: "updated_by",
-                    type: "int",
-                    isNullable: true
-                },
-                {
-                    name: 'updated_at',
-                    type: 'timestamptz',
-                    default: 'now()'
-                },
+                // {
+                //   name: "created_by",
+                //   type: "int",
+                //   isNullable: true
+                // },
+                // {
+                //     name: 'created_at',
+                //     type: 'timestamptz',
+                //     default: 'now()'
+                // },
+                // {
+                //     name: "updated_by",
+                //     type: "int",
+                //     isNullable: true
+                // },
+                // {
+                //     name: 'updated_at',
+                //     type: 'timestamptz',
+                //     default: 'now()'
+                // },
               ],
               foreignKeys: [
                 {

@@ -1,11 +1,14 @@
+import { PriorityService } from "../../src/modules/priority/priority.service";
 import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class Types1725238379990 implements MigrationInterface {
+export class Priorities1725292723209 implements MigrationInterface {
+    private priorityService: PriorityService;
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+
         await queryRunner.createTable(
             new Table({
-              name: 'types',
+              name: 'priorities',
               columns: [
                 {
                   name: 'id',
@@ -29,6 +32,11 @@ export class Types1725238379990 implements MigrationInterface {
                 },
                 {
                   name: 'description',
+                  type: 'varchar',
+                  isNullable: true,
+                },
+                {
+                  name: 'color',
                   type: 'varchar',
                   isNullable: true,
                 },
@@ -56,10 +64,18 @@ export class Types1725238379990 implements MigrationInterface {
             }),
             true,
         );
+
+        await this.afterMigration(queryRunner);
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('types');
+        await queryRunner.dropTable('priorities');
+    }
+
+    private async afterMigration(queryRunner: QueryRunner): Promise<void> {
+        // Custom logic after the migration
+        await queryRunner.query(`INSERT INTO priorities (id, title, color) VALUES (1, 'Normal', '#56F000')`);
     }
 
 }

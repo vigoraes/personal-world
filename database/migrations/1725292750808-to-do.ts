@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from "typeorm";
+import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
 
-export class Priorities1725238374852 implements MigrationInterface {
+export class ToDo1725292750808 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-              name: 'priorities',
+              name: 'to_do',
               columns: [
                 {
                   name: 'id',
@@ -28,8 +28,38 @@ export class Priorities1725238374852 implements MigrationInterface {
                   length: '50'
                 },
                 {
+                  name: 'type',
+                  type: 'int',
+                  default: 1
+              },
+                {
                   name: 'description',
                   type: 'varchar',
+                  isNullable: true,
+                },
+                {
+                  name: 'active',
+                  type: 'boolean',
+                  default: true,
+                },
+                {
+                  name: 'priority',
+                  type: 'int',
+                  default: 1,
+                },
+                {
+                  name: 'deadline',
+                  type: 'timestamptz',
+                  isNullable: true,
+                },
+                {
+                  name: 'finished',
+                  type: 'boolean',
+                  default: false,
+                },
+                {
+                  name: 'finished_at',
+                  type: 'timestamptz',
                   isNullable: true,
                 },
                 // {
@@ -53,13 +83,25 @@ export class Priorities1725238374852 implements MigrationInterface {
                 //     default: 'now()'
                 // },
               ],
+              foreignKeys: [
+                {
+                  columnNames: ['type'],
+                  referencedTableName: 'types',
+                  referencedColumnNames: ['id'],
+                },
+                {
+                    columnNames: ['priority'],
+                    referencedTableName: 'priorities',
+                    referencedColumnNames: ['id'],
+                  },
+              ]
             }),
             true,
-        );
+          );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('priorities');
+        await queryRunner.dropTable('to_do');
     }
 
 }

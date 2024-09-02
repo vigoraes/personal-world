@@ -5,7 +5,7 @@ import { UpdateToBuyDto } from './dto/update-to_buy.dto';
 
 @Controller('to-buy')
 export class ToBuyController {
-  constructor(private readonly toBuyService: ToBuyService) {}
+  constructor(private toBuyService: ToBuyService) {}
 
   @Post()
   create(@Body() createToBuyDto: CreateToBuyDto) {
