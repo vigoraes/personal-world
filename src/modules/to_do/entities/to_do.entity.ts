@@ -1,4 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { PrioritiesEntity } from "../../priority/entities/priorities.entity";
+import { TypesEntity } from "../../type/entities/types.entity";
 
 @Entity("to_do", { schema: "public" })
 export class ToDoEntity {
@@ -11,27 +19,29 @@ export class ToDoEntity {
   @Column("character varying", { name: "description", nullable: true })
   description: string | null;
 
-  @Column("integer", { name: "priority", default: () => "1" })
-  priority: number;
+  @Column("boolean", { name: "active", default: () => "true" })
+  active: boolean;
 
-  @Column("date", { name: "deadline", nullable: true })
-  deadline: string | null;
+  @Column("timestamp without time zone", { name: "deadline", nullable: true })
+  deadline: Date | null;
 
-  @Column("integer", { name: "created_by", nullable: true })
-  createdBy: number | null;
-
-  @Column("timestamp without time zone", {
-    name: "created_at",
-    default: () => "now()",
-  })
-  createdAt: Date;
-
-  @Column("integer", { name: "updated_by", nullable: true })
-  updatedBy: number | null;
+  @Column("boolean", { name: "finished", default: () => "false" })
+  finished: boolean;
 
   @Column("timestamp without time zone", {
-    name: "updated_at",
-    default: () => "now()",
+    name: "finished_at",
+    nullable: true,
   })
-  updatedAt: Date;
+  finishedAt: Date | null;
+
+  @ManyToOne(
+    () => PrioritiesEntity,
+    (prioritiesEntity) => prioritiesEntity.toDos
+  )
+  @JoinColumn([{ name: "priority", referencedColumnName: "id" }])
+  priority: PrioritiesEntity;
+
+  @ManyToOne(() => TypesEntity, (typesEntity) => typesEntity.toDos)
+  @JoinColumn([{ name: "type", referencedColumnName: "id" }])
+  type: TypesEntity;
 }
