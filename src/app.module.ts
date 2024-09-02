@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { TesteModule } from './modules/teste/teste.module';
 import { ToDoModule } from './modules/to_do/to_do.module';
+import { ToBuyModule } from './modules/to_buy/to_buy.module';
+import { TypeModule } from './modules/type/type.module';
+import { PriorityModule } from './modules/priority/priority.module';
 import 'dotenv/config';
 
 @Module({
@@ -31,6 +34,9 @@ import 'dotenv/config';
     }),
     TesteModule,
     ToDoModule,
+    ToBuyModule,
+    TypeModule,
+    PriorityModule,
   ],
   controllers: [AppController],
   providers: [AppService],

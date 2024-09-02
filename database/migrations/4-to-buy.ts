@@ -1,11 +1,11 @@
-import { MigrationInterface, QueryRunner, Table, TableForeignKey } from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class ToDo1724732928174 implements MigrationInterface {
+export class ToBuy1724733676322 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-              name: 'to_do',
+              name: 'to_buy',
               columns: [
                 {
                   name: 'id',
@@ -26,12 +26,27 @@ export class ToDo1724732928174 implements MigrationInterface {
                   name: 'title',
                   type: 'varchar',
                   length: '50'
-                  
+                },
+                {
+                    name: 'type',
+                    type: 'int',
+                    default: 1
+                },
+                {
+                    name: 'quantity',
+                    type: 'int',
+                    default: 1
+                    
                 },
                 {
                   name: 'description',
                   type: 'varchar',
                   isNullable: true,
+                },
+                {
+                  name: 'active',
+                  type: 'boolean',
+                  default: true,
                 },
                 {
                   name: 'priority',
@@ -40,7 +55,17 @@ export class ToDo1724732928174 implements MigrationInterface {
                 },
                 {
                   name: 'deadline',
-                  type: 'date',
+                  type: 'timestamptz',
+                  isNullable: true,
+                },
+                {
+                  name: 'buyed',
+                  type: 'boolean',
+                  default: false,
+                },
+                {
+                  name: 'buyed_at',
+                  type: 'timestamptz',
                   isNullable: true,
                 },
                 {
@@ -50,7 +75,7 @@ export class ToDo1724732928174 implements MigrationInterface {
                 },
                 {
                     name: 'created_at',
-                    type: 'timestamp',
+                    type: 'timestamptz',
                     default: 'now()'
                 },
                 {
@@ -60,33 +85,29 @@ export class ToDo1724732928174 implements MigrationInterface {
                 },
                 {
                     name: 'updated_at',
-                    type: 'timestamp',
+                    type: 'timestamptz',
                     default: 'now()'
                 },
               ],
-        //       foreignKeys: [
-        //         {
-        //           columnNames: ['priority'],
-        //           referencedTableName: 'priorities',
-        //           referencedColumnNames: ['id'],
-        //           // columnNames: ,
-        // //   referencedColumnNames: ["id"],
-        // //   referencedTableName: "priorities"
-        //         }
-        //       ]
+              foreignKeys: [
+                {
+                  columnNames: ['type'],
+                  referencedTableName: 'types',
+                  referencedColumnNames: ['id'],
+                },
+                {
+                    columnNames: ['priority'],
+                    referencedTableName: 'priorities',
+                    referencedColumnNames: ['id'],
+                  },
+              ]
             }),
             true,
-          );
-
-        // await queryRunner.createForeignKey(`to_do`, new TableForeignKey({
-        //   columnNames: ["priority"],
-        //   referencedColumnNames: ["id"],
-        //   referencedTableName: "priorities"
-        // }));
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('to_do');
+        await queryRunner.dropTable('to_buy');
     }
 
 }

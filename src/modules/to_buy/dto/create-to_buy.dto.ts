@@ -1,7 +1,6 @@
 import { IsBoolean, IsDateString, IsInt, IsOptional, IsPositive, IsString } from "class-validator";
 
-export class CreateToDoDto {
-    
+export class CreateToBuyDto {
     @IsString()
     title: string;
     
@@ -15,7 +14,7 @@ export class CreateToDoDto {
     description?: string;
     
     @IsOptional()
-    @IsDateString()
+    @IsString()
     deadline?: string;
     
     @IsOptional()
@@ -29,9 +28,9 @@ export class CreateToDoDto {
     
     @IsOptional()
     @IsBoolean()
-    finished?: boolean;
+    buyed?: boolean;
     
     @IsOptional()
     @IsDateString()
-    finished_at?: string;
+    buyed_at?: string;
 }
