@@ -24,17 +24,3 @@ function revertAllMigrations(): void {
 }
 
 revertAllMigrations()
-
-// async function bootstrap() {
-//   const app = await NestFactory.createApplicationContext(AppModule);
-  
-//   revertAllMigrations();
-
-//   await app.close();
-// }
-
-// bootstrap().catch(err => {
-//     console.error('Error running script:', err);
-//     process.exit(1);
-//   });
-

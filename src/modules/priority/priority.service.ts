@@ -9,25 +9,25 @@ import { Repository } from 'typeorm';
 export class PriorityService {
   constructor(
     @InjectRepository(PrioritiesEntity)
-    private typeRepository: Repository<PrioritiesEntity>
+    private prioritiesRepository: Repository<PrioritiesEntity>
   ){}
   async create(createPriorityDto: CreatePriorityDto) {
-    return await this.typeRepository.insert(createPriorityDto);
+    return await this.prioritiesRepository.insert(createPriorityDto);
   }
 
   async findAll() {
-    return await this.typeRepository.find();
+    return await this.prioritiesRepository.find();
   }
 
   async findOne(id: number) {
-    return await this.typeRepository.findOneBy({id});
+    return await this.prioritiesRepository.findOneBy({id});
   }
 
   async update(id: number, updatePriorityDto: UpdatePriorityDto) {
-    return await this.typeRepository.update(id, updatePriorityDto);
+    return await this.prioritiesRepository.update(id, updatePriorityDto);
   }
 
   async remove(id: number) {
-    return await this.typeRepository.delete(id);
+    return await this.prioritiesRepository.delete(id);
   }
 }
