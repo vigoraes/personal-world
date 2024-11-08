@@ -7,27 +7,27 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class PriorityService {
-  constructor(
-    @InjectRepository(PrioritiesEntity)
-    private prioritiesRepository: Repository<PrioritiesEntity>
-  ){}
-  async create(createPriorityDto: CreatePriorityDto) {
-    return await this.prioritiesRepository.insert(createPriorityDto);
-  }
-
-  async findAll() {
-    return await this.prioritiesRepository.find();
-  }
-
-  async findOne(id: number) {
-    return await this.prioritiesRepository.findOneBy({id});
-  }
-
-  async update(id: number, updatePriorityDto: UpdatePriorityDto) {
-    return await this.prioritiesRepository.update(id, updatePriorityDto);
-  }
-
-  async remove(id: number) {
-    return await this.prioritiesRepository.delete(id);
-  }
+    constructor(
+        @InjectRepository(PrioritiesEntity)
+        private prioritiesRepository: Repository<PrioritiesEntity>
+    ){}
+    async create(createPriorityDto: CreatePriorityDto) {
+        return await this.prioritiesRepository.insert(createPriorityDto);
+    }
+    
+    async findAll() {
+        return await this.prioritiesRepository.find();
+    }
+    
+    async findOne(id: number) {
+        return await this.prioritiesRepository.findOneBy({id});
+    }
+    
+    async update(id: number, updatePriorityDto: UpdatePriorityDto) {
+        return await this.prioritiesRepository.update(id, updatePriorityDto);
+    }
+    
+    async remove(id: number) {
+        return await this.prioritiesRepository.delete(id);
+    }
 }
